@@ -104,12 +104,15 @@ export const getMyComplaints = async (req, res) => {
 export const getComplaintById = async (req, res) => {
   try {
     const { id } = req.params;
+    const isAdmin = req.user.role === "admin";
 
     const result = await pool.query(
-      `SELECT id,title,description,category,status,priority,address,created_at,
-       ST_Y(location) AS latitude, ST_X(location) AS longitude
-       FROM complaints WHERE id=$1 AND user_id=$2`,
-      [id, req.user.id]
+      `SELECT c.*, ST_Y(c.location) AS latitude,
+       ST_X(c.location) AS longitude, u.full_name
+       FROM complaints c
+       LEFT JOIN users u ON u.id = c.user_id
+       WHERE c.id = $1 ${isAdmin ? "" : "AND c.user_id = $2"}`,
+      isAdmin ? [id] : [id, req.user.id]
     );
 
     if (!result.rows.length)
@@ -118,22 +121,24 @@ export const getComplaintById = async (req, res) => {
     const complaint = result.rows[0];
 
     const images = await pool.query(
-      "SELECT id,image_url FROM complaint_images WHERE complaint_id=$1",
+      "SELECT id, image_url FROM complaint_images WHERE complaint_id = $1",
       [id]
     );
 
-    complaint.images = await Promise.all(images.rows.map(async (img) => {
+    complaint.images = await Promise.all(images.rows.map(async img => {
       const { data, error } = await supabase.storage
         .from(process.env.SUPABASE_BUCKET)
         .createSignedUrl(img.image_url, 3600);
 
       if (error) throw error;
+
       return { id: img.id, url: data.signedUrl };
     }));
 
     const updates = await pool.query(
-      `SELECT previous_status,new_status,message,created_at
-       FROM complaint_updates WHERE complaint_id=$1
+      `SELECT previous_status, new_status, message, created_at
+       FROM complaint_updates
+       WHERE complaint_id = $1
        ORDER BY created_at DESC`,
       [id]
     );

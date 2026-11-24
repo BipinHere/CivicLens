@@ -1,0 +1,148 @@
+
+.report-page {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 45px 25px;
+  color: var(--dark);
+}
+
+.report-header {
+  margin-bottom: 30px;
+}
+
+.report-header h1 {
+  font-family: var(--heading);
+  font-size: 36px;
+  margin: 12px 0 8px;
+}
+
+.report-header p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Form */
+.report-form {
+  display: grid;
+  gap: 13px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.report-form label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.report-form input,
+.report-form select,
+.report-form textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fffefa;
+  color: var(--dark);
+  outline: none;
+  font: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.report-form input:focus,
+.report-form select:focus,
+.report-form textarea:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(113, 132, 119, 0.12);
+}
+
+.report-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.report-form input[type="file"] {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Location */
+.location-button {
+  justify-self: start;
+  padding: 10px 15px;
+  border: 1px solid var(--sage);
+  border-radius: 7px;
+  color: var(--sage);
+  background: var(--sage-light);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.location-button:hover {
+  background: #dce6dc;
+  transform: translateY(-1px);
+}
+
+.location-success {
+  color: var(--sage);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.report-error {
+  color: #c0392b;
+  background: #fcebea;
+  padding: 11px 13px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+/* Submit */
+.submit-report {
+  margin-top: 15px;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background: var(--orange);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.submit-report:hover:not(:disabled) {
+  background: #bd542f;
+  transform: translateY(-2px);
+}
+
+.submit-report:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.submit-report:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .report-page {
+    padding: 30px 16px;
+  }
+
+  .report-header h1 {
+    font-size: 28px;
+  }
+
+  .report-form {
+    padding: 22px 17px;
+  }
+}

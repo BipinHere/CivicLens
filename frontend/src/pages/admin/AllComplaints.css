@@ -1,0 +1,238 @@
+
+.all-complaints {
+  width: 100%;
+}
+
+.complaints-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.complaints-header h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.complaints-header p:last-child {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.complaint-count {
+  background: var(--orange-light);
+  color: var(--orange);
+  padding: 10px 15px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.complaint-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.complaint-filters select,
+.complaint-filters button,
+.complaints-pagination button {
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--dark);
+  font: inherit;
+}
+
+.complaint-filters select {
+  min-width: 150px;
+}
+
+.complaint-filters button {
+  background: var(--dark);
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.complaint-filters button:hover {
+  background: var(--orange);
+}
+
+.complaints-table-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.admin-complaints-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-complaints-table th,
+.admin-complaints-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.admin-complaints-table th {
+  color: var(--muted);
+  background: #FAF8F2;
+  font-weight: 700;
+}
+
+.admin-complaints-table tbody tr:hover {
+  background: var(--bg);
+}
+
+.admin-complaints-table td strong,
+.admin-complaints-table td small {
+  display: block;
+}
+
+.admin-complaints-table td small {
+  color: var(--muted);
+  margin-top: 5px;
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.priority-tag,
+.status-tag {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: var(--bg);
+}
+
+.priority-tag.critical,
+.priority-tag.high {
+  color: #B94B3D;
+  background: #F8E5DA;
+}
+
+.priority-tag.medium {
+  color: #98702C;
+  background: #F8F0D9;
+}
+
+.priority-tag.low {
+  color: var(--sage);
+  background: var(--sage-light);
+}
+
+.status-tag.resolved {
+  color: var(--sage);
+  background: var(--sage-light);
+}
+
+.status-tag.in_progress,
+.status-tag.assigned {
+  color: #98702C;
+  background: #F8F0D9;
+}
+
+.status-tag.submitted,
+.status-tag.under_review {
+  color: var(--orange);
+  background: var(--orange-light);
+}
+
+.status-tag.rejected {
+  color: #B94B3D;
+  background: #F8E5DA;
+}
+
+.table-message {
+  padding: 35px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.table-message.error {
+  color: #B94B3D;
+}
+
+.complaints-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.complaints-pagination div {
+  display: flex;
+  gap: 8px;
+}
+
+.complaints-pagination button {
+  cursor: pointer;
+}
+
+.complaints-pagination button:hover:not(:disabled) {
+  background: var(--dark);
+  color: white;
+}
+
+.complaints-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.complaint-title-link {
+  display: block;
+  color: var(--dark);
+  margin-bottom: 5px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.complaint-title-link:hover {
+  color: var(--orange);
+}
+
+@media (max-width: 600px) {
+  .complaints-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .complaints-header h1 {
+    font-size: 25px;
+  }
+
+  .complaints-pagination {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .complaint-filters select {
+    flex: 1;
+    min-width: 130px;
+  }
+}
